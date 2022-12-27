@@ -119,7 +119,6 @@
 	<script type="text/javascript" src="scripts/Esculturas.js"></script>
 	<script type="text/javascript" src="scripts/Centrosdesalud.js"></script>
 	<script type="text/javascript" src="scripts/godoycruz.js"></script>
-	<script type="text/javascript" src="scripts/CicloviasExistentes.js"></script>
 	<script type="text/javascript" src="scripts/ClinicasPrivadas.js"></script>
 	<script type="text/javascript" src="scripts/Hospital.js"></script>
 	<script type="text/javascript" src="scripts/Escuelas.js"></script>
@@ -164,8 +163,6 @@
 	<script type="text/javascript" src="scripts/RedHidrica.js"></script>
 	<script type="text/javascript" src="scripts/PanelesSolares.js"></script>
 	<script type="text/javascript" src="scripts/InfoAmbiente.js"></script>
-	<script type="text/javascript" src="scripts/Ciclovias Proyectadas (DAMI II).js"></script>
-	<script type="text/javascript" src="scripts/Ciclovias Proyectadas (Obras Particulares).js"></script>
 	<script type="text/javascript" src="scripts/Metrotranvia.js"></script>
 	<script type="text/javascript" src="scripts/ParadasMetrotranvia.js"></script>
 	<script type="text/javascript" src="scripts/GranjaSolar.js"></script>
@@ -180,6 +177,13 @@
 	<script type="text/javascript" src="scripts/Restaurantes.js"></script>
 	<script type="text/javascript" src="scripts/Incubadora.js"></script>
 	<script type="text/javascript" src="scripts/UnionesVecinales.js"></script>
+	<script type="text/javascript" src="scripts/Ciclovias Proyectadas (DAMI II).js"></script>
+	<script type="text/javascript" src="scripts/Ciclovias Proyectadas (Municipalidad).js"></script>
+	<script type="text/javascript" src="scripts/Ciclovias en Ejecucion (DAMI II).js"></script>
+	<script type="text/javascript" src="scripts/Ciclovias en Ejecucion (Municipalidad).js"></script>
+	<script type="text/javascript" src="scripts/CicloviasExistentes.js"></script>
+	<script type="text/javascript" src="scripts/stm.js"></script>
+	<script type="text/javascript" src="scripts/bici.js"></script>
 
 
 </head>
@@ -189,12 +193,13 @@
 		Cruz</h1>
 	<img src="favicon.png" height="45px" width="45px" align=right class="logogc">
 	<div id="map" class="map map-home" style="margin:8px 0 8px 0;height:800px"></div>
-	<div id="referencias">
-		<div class="icono_referencia" id="ref_cicloObras">Ciclovias Proyectadas Municipalidad:</br>8,33 Km.</div> <b>
-			<div class="icono_referencia" id="ref_cicloDami">Ciclovias Proyectadas DAMI II:<br>18,26 Km.</div>
-			<div class="icono_referencia" id="ref_cicloviasexist">Ciclovias Existentes:</br>26,10 Km.</div>
-
-	</div>
+	<!-- div id="referencias">
+		<div class="icono_referencia" id="ref_cicloDami">Ciclovias Proyectadas DAMI II:<br>6,24 Km.</div> <b>
+			<div class="icono_referencia" id="ref_cicloEjec">Ciclovias en Ejecución DAMI II:</br>10,19 Km.</div>
+		</b>
+		<div class="icono_referencia" id="ref_cicloviasexist">Ciclovias Existentes:</br>43,04 Km.</div>
+		</b>
+	</div> -->
 
 	<div><abbr title="Conozca el proyecto Piedemonte"><a
 				href="https://sites.google.com/view/observatorio-territorial/piedemonte?authuser=0" target="_blank"><img
@@ -900,9 +905,6 @@
 			godoycruz = L.geoJson(godoycruz),
 			puntoswifi = L.geoJson(Puntoswifi, { pointToLayer: crearIconoWifi, onEachFeature: agregarPopuppuntorecepcionpilas }),
 			persianas = L.geoJson(Persianas, { pointToLayer: crearIconoPersi, onEachFeature: agregarPopuppersianas }),
-			cicloObras = L.geoJson(CicloviaProyectadaObras, { onEachFeature: agregarPopupciclovias }).setStyle({ color: "yellow" }),
-			cicloDami = L.geoJson(CicloviasProyectadasDami, { onEachFeature: agregarPopupciclovias }).setStyle({ color: "orange" }),
-			cicloviasexist = L.geoJson(CicloviasExistentes, { onEachFeature: agregarPopupciclovias }).setStyle({ color: "red" }),
 			lineasd = L.geoJson(LineasD, { onEachFeature: agregarPopuplineas }).setStyle({ color: "orange" }),
 			lineasmun = L.geoJson(LineaMunicipal, { onEachFeature: agregarPopuplineasMu }).setStyle({ color: "orange" }),
 			lineast = L.geoJson(LineasT, { onEachFeature: agregarPopuplineas }).setStyle({ color: "red" }),
@@ -960,6 +962,39 @@
 			spa = L.geoJson(Spa, { pointToLayer: crearIconoVerde, onEachFeature: agregarPopupGastronomia2 }),
 			incu = L.geoJson(Incubadora, { pointToLayer: crearIconoVerde, onEachFeature: agregarPopup}),
 			union = L.geoJson(UnionesVecinales, { pointToLayer: crearIconoAmarillo, onEachFeature: agregarPopupPV}),
+
+			cicloMuni = L.geoJson(CicloviasProyectadasMuni, {
+				onEachFeature: agregarPopupciclovias
+			}).setStyle({
+				color: "yellow"
+			}),
+			cicloDami = L.geoJson(CicloviasProyectadasDami, {
+				onEachFeature: agregarPopupciclovias
+			}).setStyle({
+				color: "orange"
+			}),
+			cicloviasexist = L.geoJson(CicloviasExistentes, {
+				onEachFeature: agregarPopupciclovias
+			}).setStyle({
+				color: "red"
+			}),
+			cicloEjec = L.geoJson(CicloviasenEjecucionDami, {
+				onEachFeature: agregarPopupciclovias
+			}).setStyle({
+				color: "#03db5d"
+			}),
+			muniEjec = L.geoJson(CicloviasenEjecucionMuni, {
+				onEachFeature: agregarPopupciclovias
+			}).setStyle({
+				color: "#17fff3"
+			}),
+
+			stm1 = L.geoJson(stm, { pointToLayer: crearIconoAzul, onEachFeature: agregarPopupGastronomia2 }),
+			bici1 = L.geoJson(bici, { pointToLayer: crearIconoRojo, onEachFeature: agregarPopupGastronomia2 }),
+
+
+
+
 			infoambiente = L.geoJson(InfoAmbiente, { onEachFeature: agregarPopupDepen });
 
 
@@ -1017,9 +1052,22 @@
 
 			},  
 			"INFORMACION GENERAL": {
-			"Barrios Consolidados": BarriosConsolidados,
+		/* 	"Barrios Consolidados": BarriosConsolidados, */
 				"Distritos": Depa,
 
+			},
+
+			"Movilidad": {
+				"Ciclovías Existentes": cicloviasexist,
+				"Ciclovías Proyectadas DAMI II": cicloDami,
+				"Ciclovías Proyectadas Municipalidad": cicloMuni,
+				"Ciclovías en Ejecución DAMI II": cicloEjec,
+
+			},
+
+			"Puestos en la Bici": {
+				   "STM": stm1,
+				    "Puestos Bici": bici1,
 			},
 					
 			/*"Gestión del Riesgo": {
