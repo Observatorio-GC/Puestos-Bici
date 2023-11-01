@@ -22,7 +22,7 @@
 	<link rel="shortcut icon" type="image/x-icon" href="favicon1.png">
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
 	<link rel="stylesheet" href="css/Leaflet.PolylineMeasure.css">
 	<link rel="stylesheet" href="css/Leaflet.StreetViewButtons.css">
 	<link rel="stylesheet" href="css/Leaflet.StreetView1Buttons.css">
@@ -95,7 +95,7 @@
 	</style>
 
 	<!-- SCRIPTS -->
-	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script> 
 	<script src="scripts/Leaflet.PolylineMeasure.js"></script>
 	<script src="scripts/StreetViewButtons.js"></script>
 	<script src="scripts/StreetView1Buttons.js"></script>
@@ -992,9 +992,6 @@
 			stm1 = L.geoJson(stm, { pointToLayer: crearIconoRojo, onEachFeature: agregarPopupGastronomia2 }),
 			bici1 = L.geoJson(bici, { pointToLayer: crearIconoAzul, onEachFeature: agregarPopupGastronomia2 }),
 
-
-
-
 			infoambiente = L.geoJson(InfoAmbiente, { onEachFeature: agregarPopupDepen });
 
 
@@ -1054,15 +1051,13 @@
 			"INFORMACION GENERAL": {
 		/* 	"Barrios Consolidados": BarriosConsolidados, */
 				"Distritos": Depa,
-
 			},
 
 			"Movilidad": {
 				"Ciclovías Existentes": cicloviasexist,
-				"Ciclovías Proyectadas DAMI II": cicloDami,
-				"Ciclovías Proyectadas Municipalidad": cicloMuni,
-				"Ciclovías en Ejecución DAMI II": cicloEjec,
-
+             	"Ciclovías Proyectadas DAMI II": cicloDami,
+			/*  "Ciclovías Proyectadas Municipalidad": cicloMuni, 
+				"Ciclovías en Ejecución DAMI II": cicloEjec,*/
 			},
 
 			"Puestos en la Bici": {
@@ -1081,27 +1076,20 @@
 
 			},
 			"Sistema Juridíco-Administrativo": {
-				
 				"Límite Urbano": limiurb,
-				
-
 			},
+
 			"Infraestructura Ambiental": {
 				"Espacios Verdes": espverdes,
-				
-			
-			
 			},
 
 			"Patrimonio y Cultura": {
 				"Barrios Historicos": barrios,
-				
-			
 			},
+
                         "Infraestructura Urbana y de Servicio": {
 				"Bancos": bank,
-				
-				
+
             },*/
 		};
 
